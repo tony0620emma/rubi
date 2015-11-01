@@ -18,12 +18,15 @@ extern void yyerror(const char *);
 "else" {return ELSE;}
 "break" {return BREAK;}
 "end" {return END;}
+"return" {return RETURN;}
 "(" {return '(';}
 ")" {return ')';}
 "[" {return '[';}
 "]" {return ']';}
 ";" {return ';';}
 "," {return ',';}
+"\"" {return '"';}
+"'" {return ''';}
 "$" {return '$';}
 "++" {return INC;}
 "--" {return DEC;}
@@ -43,9 +46,11 @@ extern void yyerror(const char *);
 "|" {return '|';}
 "&" {return '&';}
 "!" {return '!';}
+"$"[a-zA-Z_]+[0-9a-zA-Z_]* {return GLOBAL_VARIABLE;}
 [1-9]+[0-9]* {return NUMBER;}
 [a-zA-Z_]+[0-9a-zA-Z_]* {return VARIABLE;}
 [ \t]  { /* nothing */}
+.      { /* nothing */}
 
 %%
 
